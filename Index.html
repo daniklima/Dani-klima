@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дани Климa — Продажба и монтаж на климатици</title>
+<meta name="description" content="Дани Клима — продажба, монтаж и сервиз на климатици. Хладилен контур, изпълнен от техници, които го познават отвътре.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F2438;
+    --ice:#EAF4F7;
+    --paper:#F5F9FA;
+    --cyan:#3FA7B8;
+    --cyan-dim:#C9E6EA;
+    --copper:#B5651D;
+    --copper-bright:#D9863E;
+    --mint:#8FD8C4;
+    --line: rgba(15,36,56,0.12);
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--navy);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.eyebrow,.logo{ font-family:'Unbounded', sans-serif; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+
+  :focus-visible{
+    outline: 3px solid var(--copper-bright);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+    position:relative;
+  }
+
+  .pipe-svg{
+    position:absolute;
+    top:0; left:50%;
+    transform:translateX(-50%);
+    width:6px;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+  }
+  .pipe-line{
+    fill:none;
+    stroke:var(--copper);
+    stroke-width:3;
+    stroke-linecap:round;
+  }
+  .pipe-flow{
+    fill:none;
+    stroke:var(--copper-bright);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-dasharray: 2 14;
+    animation: flow 1.6s linear infinite;
+  }
+  @keyframes flow{
+    to{ stroke-dashoffset: -32; }
+  }
+  .joint{
+    fill:var(--paper);
+    stroke:var(--copper);
+    stroke-width:3;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .pipe-flow{ animation:none; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,249,250,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .logo{
+    font-weight:800; font-size:1.15rem; letter-spacing:-0.01em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{ width:10px; height:10px; border-radius:50%; background:var(--cyan); box-shadow:0 0 0 4px var(--cyan-dim); }
+  .navlinks{ display:flex; gap:28px; font-size:0.95rem; font-weight:500; }
+  .navlinks a{ text-decoration:none; opacity:0.75; transition:opacity .15s; }
+  .navlinks a:hover{ opacity:1; }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--navy); color:var(--ice);
+    padding:10px 18px; border-radius:100px;
+    font-weight:700; font-size:0.9rem; text-decoration:none;
+    white-space:nowrap;
+  }
+  .navlinks-mobile{ display:none; }
+
+  .hero{
+    padding:88px 0 64px;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:0.78rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--copper); margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width:22px; height:2px; background:var(--copper); display:inline-block; }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  h1{
+    font-size:clamp(2.3rem, 4.6vw, 3.6rem);
+    font-weight:800; line-height:1.06; letter-spacing:-0.015em;
+    margin:0 0 22px;
+  }
+  h1 span{ color:var(--cyan); }
+  .hero p.lead{
+    font-size:1.12rem; max-width:46ch; opacity:0.82; margin:0 0 32px;
+  }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:100px; font-weight:700; font-size:0.96rem;
+    text-decoration:none; border:2px solid transparent; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--copper); color:#fff; box-shadow:0 8px 20px -8px rgba(181,101,29,0.6); }
+  .btn-ghost{ background:transparent; border-color:var(--navy); color:var(--navy); }
+
+  .dial-card{
+    background:var(--navy); color:var(--ice);
+    border-radius:28px; padding:36px 32px;
+    position:relative; overflow:hidden;
+  }
+  .dial-card::after{
+    content:''; position:absolute; inset:-40% -40% auto auto; width:60%; height:60%;
+    background:radial-gradient(circle, var(--cyan) 0%, transparent 70%); opacity:0.25;
+  }
+  .dial-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; position:relative; }
+  .dial-label{ font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.6; }
+  .dial-wrap{ display:flex; justify-content:center; padding:14px 0 6px; position:relative; }
+  .dial-temp{
+    font-family:'JetBrains Mono', monospace; font-size:3.1rem; font-weight:500;
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    text-align:center;
+  }
+  .dial-temp small{ display:block; font-size:0.9rem; opacity:0.55; font-weight:400; margin-top:2px; }
+  .dial-foot{ display:flex; justify-content:space-between; font-size:0.82rem; opacity:0.65; margin-top:14px; position:relative; }
+
+  section{ padding:76px 0; position:relative; }
+  .section-head{ max-width:640px; margin-bottom:44px; }
+  .section-head h2{ font-size:clamp(1.6rem,3vw,2.2rem); margin:0 0 12px; letter-spacing:-0.01em; }
+  .section-head p{ opacity:0.75; margin:0; font-size:1.02rem; }
+
+  .services-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
+  }
+  .svc-card{
+    background:#fff; border:1px solid var(--line); border-radius:20px;
+    padding:26px 22px; position:relative;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .svc-card:hover{ border-color:var(--cyan); transform:translateY(-3px); }
+  .svc-icon{
+    width:44px; height:44px; border-radius:12px; background:var(--ice);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+  }
+  .svc-card h3{ font-size:1.05rem; margin:0 0 8px; font-weight:600; }
+  .svc-card p{ font-size:0.92rem; opacity:0.72; margin:0; }
+
+  .process{
+    background:var(--navy); color:var(--ice); border-radius:28px;
+    padding:56px 40px;
+  }
+  .process .section-head p{ opacity:0.68; }
+  .process .section-head h2{ color:#fff; }
+  .steps{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    position:relative;
+  }
+  .steps::before{
+    content:''; position:absolute; top:22px; left:5%; right:5%; height:2px;
+    background:linear-gradient(90deg, var(--copper), var(--cyan));
+    opacity:0.5;
+  }
+  .step{ position:relative; padding-right:16px; }
+  .step-num{
+    width:44px; height:44px; border-radius:50%; background:var(--paper); color:var(--navy);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-weight:500; font-size:0.95rem;
+    margin-bottom:18px; position:relative; z-index:1;
+    border:2px solid var(--copper);
+  }
+  .step h3{ font-size:1rem; margin:0 0 8px; font-weight:600; }
+  .step p{ font-size:0.88rem; opacity:0.68; margin:0; }
+
+  .brand-row{
+    display:flex; flex-wrap:wrap; gap:14px;
+  }
+  .brand-chip{
+    border:1px solid var(--line); border-radius:100px; padding:10px 22px;
+    font-family:'JetBrains Mono', monospace; font-size:0.9rem; background:#fff;
+  }
+
+  .stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+  }
+  .stat{
+    border-left:2px solid var(--copper); padding-left:18px;
+  }
+  .stat .num{
+    font-family:'JetBrains Mono', monospace; font-size:2.3rem; font-weight:500; color:var(--navy);
+  }
+  .stat .lbl{ font-size:0.9rem; opacity:0.68; margin-top:4px; }
+
+  .testi-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+  }
+  .testi{
+    background:#fff; border:1px solid var(--line); border-radius:20px; padding:26px;
+  }
+  .testi p{ font-size:0.96rem; margin:0 0 16px; }
+  .testi .who{ font-size:0.85rem; opacity:0.6; font-weight:600; }
+
+  .contact-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;
+  }
+  .contact-info dl{ margin:0; }
+  .contact-info dt{ font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.55; margin-top:20px; }
+  .contact-info dd{ margin:4px 0 0; font-size:1.1rem; font-weight:600; font-family:'JetBrains Mono', monospace; }
+  form{ display:flex; flex-direction:column; gap:14px; }
+  label{ font-size:0.85rem; font-weight:600; opacity:0.75; }
+  input, textarea{
+    width:100%; padding:13px 16px; border-radius:12px; border:1px solid var(--line);
+    background:#fff; font-family:'Manrope', sans-serif; font-size:0.96rem; color:var(--navy);
+  }
+  input:focus, textarea:focus{ border-color:var(--cyan); }
+  textarea{ resize:vertical; min-height:100px; }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .form-note{ font-size:0.8rem; opacity:0.55; margin-top:-4px; }
+
+  footer{
+    border-top:1px solid var(--line); padding:32px 0; font-size:0.85rem; opacity:0.65;
+  }
+  .foot-row{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .services-grid{ grid-template-columns:repeat(2,1fr); }
+    .steps{ grid-template-columns:repeat(2,1fr); row-gap:28px; }
+    .steps::before{ display:none; }
+    .stats{ grid-template-columns:1fr; }
+    .testi-grid{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; }
+    .navlinks{ display:none; }
+    .pipe-svg{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<svg class="pipe-svg" viewBox="0 0 6 3000" preserveAspectRatio="none" aria-hidden="true">
+  <path class="pipe-line" d="M3,0 L3,3000"></path>
+  <path class="pipe-flow" d="M3,0 L3,3000"></path>
+</svg>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><span class="dot"></span>Дани Клима</div>
+    <div class="navlinks">
+      <a href="#uslugi">Услуги</a>
+      <a href="#kak">Как работим</a>
+      <a href="#marki">Марки</a>
+      <a href="#otzivi">Отзиви</a>
+      <a href="#kontakt">Контакт</a>
+    </div>
+    <a class="nav-cta" href="tel:+359844119101">📞 0844 119 101</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Продажба · Монтаж · Сервиз</div>
+          <h1>Хладилният контур е нашият занаят.<br><span>Прохладата</span> — вашата.</h1>
+          <p class="lead">Дани Клима monтира климатици в домове и офиси в София вече над 12 години — от първия оглед до пускането в експлоатация и годишната поддръжка.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#kontakt">Заяви безплатен оглед</a>
+            <a class="btn btn-ghost" href="#uslugi">Виж услугите</a>
+          </div>
+        </div>
+        <div class="dial-card">
+          <div class="dial-top">
+            <span class="dial-label">Термостат</span>
+            <span class="dial-label mono" id="clockLabel">На линия</span>
+          </div>
+          <div class="dial-wrap">
+            <svg width="220" height="220" viewBox="0 0 220 220">
+              <circle cx="110" cy="110" r="92" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="14"/>
+              <circle id="dialArc" cx="110" cy="110" r="92" fill="none" stroke="#3FA7B8" stroke-width="14" stroke-linecap="round" stroke-dasharray="578" stroke-dashoffset="578" transform="rotate(-90 110 110)"/>
+            </svg>
+            <div class="dial-temp mono" id="dialTemp">32°<small>стайна</small></div>
+          </div>
+          <div class="dial-foot">
+            <span>Режим: Охлаждане</span>
+            <span id="targetTemp">Цел: 21°</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="uslugi">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Услуги</h2>
+        <p>Каквото и да е нужно на хладилния ви контур — правим го със собствен екип, не с подизпълнители.</p>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <div class="svc-icon">❄️</div>
+          <h3>Продажба</h3>
+          <p>Подбираме модел по площ, изложение и бюджет — без preprodadeni мощности.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">🔧</div>
+          <h3>Монтаж</h3>
+          <p>Вакуумиране, тест за налягане и заваръчен монтаж на тръбите — по правилата, не набързо.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">🛠️</div>
+          <h3>Сервиз</h3>
+          <p>Диагностика на теч на фреон, компресор и платка — с ясна оферта преди работа.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">📅</div>
+          <h3>Поддръжка</h3>
+          <p>Годишно почистване на филтри и дезинфекция — по график, който не забравяте сами.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kak">
+    <div class="wrap">
+      <div class="process">
+        <div class="section-head">
+          <h2>Как работим</h2>
+          <p>Четири стъпки от обаждането до първия студен въздух.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <h3>Оглед</h3>
+            <p>Идваме на място, измерваме и препоръчваме мощност — безплатно.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <h3>Оферта</h3>
+            <p>Фиксирана цена за уред и монтаж, без скрити такси за тръби.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <h3>Монтаж</h3>
+            <p>Обикновено за един ден — вътрешно и външно тяло, вакуум, тест.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <h3>Пускане</h3>
+            <p>Настройваме режимите заедно с вас и оставяме гаранционна карта.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="marki">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Марки, с които работим</h2>
+        <p>Монтираме и сервизираме основните марки на българския пазар.</p>
+      </div>
+      <div class="brand-row">
+        <span class="brand-chip">Daikin</span>
+        <span class="brand-chip">Mitsubishi Electric</span>
+        <span class="brand-chip">Gree</span>
+        <span class="brand-chip">Toshiba</span>
+        <span class="brand-chip">LG</span>
+        <span class="brand-chip">Fujitsu</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat">
+          <div class="num">12+</div>
+          <div class="lbl">години на пазара</div>
+        </div>
+        <div class="stat">
+          <div class="num">3400+</div>
+          <div class="lbl">монтирани климатика</div>
+        </div>
+        <div class="stat">
+          <div class="num">24ч</div>
+          <div class="lbl">отговор при спешен сервиз</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="otzivi">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Какво казват клиентите</h2>
+        <p>Примерни отзиви — заменете с реални след стартиране на сайта.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <p>„Дойдоха точно в часа, монтажът отне един следобед и обясниха всеки режим на дистанционното."</p>
+          <div class="who">— Ирина, кв. Младост</div>
+        </div>
+        <div class="testi">
+          <p>„Търсихме теч на фреон две години — намериха го за 20 минути и оправиха на място."</p>
+          <div class="who">— Стоян, офис в центъра</div>
+        </div>
+        <div class="testi">
+          <p>„Цената в офертата съвпадна с крайната фактура. Без изненади за тръби или скоба."</p>
+          <div class="who">— Мария, кв. Лозенец</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Свържете се с нас</h2>
+        <p>Оставете съобщение или се обадете направо — отговаряме в рамките на работния ден.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <dl>
+            <dt>Телефон</dt>
+            <dd><a href="tel:+359844119101">0844 119 101</a></dd>
+            <dt>Имейл</dt>
+            <dd><a href="mailto:daniklima123@gmail.com">daniklima123@gmail.com</a></dd>
+            <dt>Работно време</dt>
+            <dd>Пон–Съб, 08:00–19:00</dd>
+            <dt>Обслужван район</dt>
+            <dd>София и областта</dd>
+          </dl>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Формата е примерна — свържете я с имейл или CRM, за да получавате заявки.');">
+          <div class="field">
+            <label for="name">Име</label>
+            <input id="name" type="text" required>
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input id="phone" type="tel" required>
+          </div>
+          <div class="field">
+            <label for="msg">Съобщение</label>
+            <textarea id="msg" placeholder="Разкажете накратко за помещението и желаната мощност..."></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" style="align-self:flex-start;">Изпрати запитване</button>
+          <p class="form-note">Формата е примерна и не изпраща реално съобщение — трябва да се свърже с имейл или CRM система.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© <span id="year"></span> Дани Клима. Всички права запазени.</span>
+    <span>Продажба · Монтаж · Сервиз на климатици</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const arc = document.getElementById('dialArc');
+  const tempEl = document.getElementById('dialTemp');
+  const circumference = 578;
+  const startTemp = 32, endTemp = 21;
+  const duration = 2600;
+  let startTime = null;
+
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+  function step(ts){
+    if(!startTime) startTime = ts;
+    const elapsed = ts - startTime;
+    const t = Math.min(elapsed / duration, 1);
+    const eased = easeOutCubic(t);
+    const currentTemp = Math.round(startTemp - (startTemp - endTemp) * eased);
+    tempEl.innerHTML = currentTemp + '°<small>стайна</small>';
+    const offset = circumference * (1 - eased);
+    arc.setAttribute('stroke-dashoffset', offset);
+    if(t < 1){
+      requestAnimationFrame(step);
+    }
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion){
+    tempEl.innerHTML = endTemp + '°<small>стайна</small>';
+    arc.setAttribute('stroke-dashoffset', 0);
+  } else {
+    requestAnimationFrame(step);
+  }
+</script>
+
+</body>
+</html>
