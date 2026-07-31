@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Дани Климa — Продажба и монтаж на климатици</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230F2438'/%3E%3Cpath d='M50 20 L50 80 M28 30 L72 70 M72 30 L28 70' stroke='%233FA7B8' stroke-width='7' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%23B5651D'/%3E%3C/svg%3E">
 <meta name="description" content="Дани Клима — продажба, монтаж и сервиз на климатици. Хладилен контур, изпълнен от техници, които го познават отвътре.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +52,7 @@
     position:relative;
   }
 
+  /* ---------- Refrigerant line — the signature element ---------- */
   .pipe-svg{
     position:absolute;
     top:0; left:50%;
@@ -88,6 +90,7 @@
     *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
   }
 
+  /* ---------- Nav ---------- */
   header{
     position:sticky; top:0; z-index:50;
     background:rgba(245,249,250,0.88);
@@ -113,8 +116,11 @@
     font-weight:700; font-size:0.9rem; text-decoration:none;
     white-space:nowrap;
   }
+  .nav-ctas{ display:flex; align-items:center; gap:10px; }
+  .whatsapp-cta{ background:#25D366; color:#0F2438; }
   .navlinks-mobile{ display:none; }
 
+  /* ---------- Hero ---------- */
   .hero{
     padding:88px 0 64px;
     position:relative;
@@ -137,6 +143,20 @@
     font-size:1.12rem; max-width:46ch; opacity:0.82; margin:0 0 32px;
   }
   .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-checklist{
+    list-style:none; margin:0 0 28px; padding:0;
+    display:grid; grid-template-columns:1fr 1fr; gap:10px 20px;
+  }
+  .hero-checklist li{
+    font-size:0.92rem; font-weight:500; opacity:0.85;
+    display:flex; align-items:center; gap:8px;
+  }
+  .hero-checklist li::before{
+    content:'✓'; color:var(--cyan); font-weight:700;
+    width:20px; height:20px; border-radius:50%; background:var(--cyan-dim);
+    display:flex; align-items:center; justify-content:center; font-size:0.75rem;
+    flex-shrink:0;
+  }
   .btn{
     display:inline-flex; align-items:center; gap:8px;
     padding:14px 26px; border-radius:100px; font-weight:700; font-size:0.96rem;
@@ -147,6 +167,7 @@
   .btn-primary{ background:var(--copper); color:#fff; box-shadow:0 8px 20px -8px rgba(181,101,29,0.6); }
   .btn-ghost{ background:transparent; border-color:var(--navy); color:var(--navy); }
 
+  /* Thermostat dial */
   .dial-card{
     background:var(--navy); color:var(--ice);
     border-radius:28px; padding:36px 32px;
@@ -167,11 +188,13 @@
   .dial-temp small{ display:block; font-size:0.9rem; opacity:0.55; font-weight:400; margin-top:2px; }
   .dial-foot{ display:flex; justify-content:space-between; font-size:0.82rem; opacity:0.65; margin-top:14px; position:relative; }
 
+  /* ---------- Section shell ---------- */
   section{ padding:76px 0; position:relative; }
   .section-head{ max-width:640px; margin-bottom:44px; }
   .section-head h2{ font-size:clamp(1.6rem,3vw,2.2rem); margin:0 0 12px; letter-spacing:-0.01em; }
   .section-head p{ opacity:0.75; margin:0; font-size:1.02rem; }
 
+  /* ---------- Services ---------- */
   .services-grid{
     display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
   }
@@ -188,6 +211,7 @@
   .svc-card h3{ font-size:1.05rem; margin:0 0 8px; font-weight:600; }
   .svc-card p{ font-size:0.92rem; opacity:0.72; margin:0; }
 
+  /* ---------- Process (real sequence — numbered legitimately) ---------- */
   .process{
     background:var(--navy); color:var(--ice); border-radius:28px;
     padding:56px 40px;
@@ -195,13 +219,8 @@
   .process .section-head p{ opacity:0.68; }
   .process .section-head h2{ color:#fff; }
   .steps{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:32px 0;
     position:relative;
-  }
-  .steps::before{
-    content:''; position:absolute; top:22px; left:5%; right:5%; height:2px;
-    background:linear-gradient(90deg, var(--copper), var(--cyan));
-    opacity:0.5;
   }
   .step{ position:relative; padding-right:16px; }
   .step-num{
@@ -214,6 +233,7 @@
   .step h3{ font-size:1rem; margin:0 0 8px; font-weight:600; }
   .step p{ font-size:0.88rem; opacity:0.68; margin:0; }
 
+  /* ---------- Brands ---------- */
   .brand-row{
     display:flex; flex-wrap:wrap; gap:14px;
   }
@@ -222,6 +242,38 @@
     font-family:'JetBrains Mono', monospace; font-size:0.9rem; background:#fff;
   }
 
+  /* ---------- Catalog ---------- */
+  .catalog-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  .product-card{
+    background:#fff; border:1px solid var(--line); border-radius:20px;
+    overflow:hidden; display:flex; flex-direction:column;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .product-card:hover{ border-color:var(--cyan); transform:translateY(-3px); }
+  .product-photo{
+    width:100%; aspect-ratio:1/1; object-fit:cover; object-position:top;
+    display:block; background:var(--ice);
+  }
+  .product-body{ padding:18px 20px 22px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .product-brand{ font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--copper); font-weight:600; }
+  .product-name{ font-size:1.02rem; font-weight:700; margin:0; line-height:1.3; }
+  .product-specs{ font-size:0.85rem; opacity:0.68; margin:0; }
+  .product-foot{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:auto; padding-top:12px; gap:10px;
+  }
+  .product-price{ font-family:'JetBrains Mono', monospace; font-weight:500; font-size:1.15rem; color:var(--navy); }
+  .product-price small{ display:block; font-size:0.7rem; font-weight:400; opacity:0.6; }
+  .product-order{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--navy); color:#fff; padding:9px 16px; border-radius:100px;
+    font-size:0.82rem; font-weight:700; text-decoration:none; white-space:nowrap;
+  }
+  .catalog-note{ font-size:0.85rem; opacity:0.6; margin-top:28px; }
+
+  /* ---------- Stats ---------- */
   .stats{
     display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
   }
@@ -233,6 +285,7 @@
   }
   .stat .lbl{ font-size:0.9rem; opacity:0.68; margin-top:4px; }
 
+  /* ---------- Testimonials ---------- */
   .testi-grid{
     display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
   }
@@ -242,6 +295,7 @@
   .testi p{ font-size:0.96rem; margin:0 0 16px; }
   .testi .who{ font-size:0.85rem; opacity:0.6; font-weight:600; }
 
+  /* ---------- Contact ---------- */
   .contact-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;
   }
@@ -266,14 +320,20 @@
 
   @media (max-width: 880px){
     .hero-grid{ grid-template-columns:1fr; }
+    .hero-checklist{ grid-template-columns:1fr; }
     .services-grid{ grid-template-columns:repeat(2,1fr); }
     .steps{ grid-template-columns:repeat(2,1fr); row-gap:28px; }
     .steps::before{ display:none; }
     .stats{ grid-template-columns:1fr; }
+    .catalog-grid{ grid-template-columns:repeat(2,1fr); }
     .testi-grid{ grid-template-columns:1fr; }
     .contact-grid{ grid-template-columns:1fr; }
     .navlinks{ display:none; }
     .pipe-svg{ display:none; }
+  }
+
+  @media (max-width: 560px){
+    .catalog-grid{ grid-template-columns:1fr; }
   }
 </style>
 </head>
@@ -289,12 +349,16 @@
     <div class="logo"><span class="dot"></span>Дани Клима</div>
     <div class="navlinks">
       <a href="#uslugi">Услуги</a>
+      <a href="#katalog">Каталог</a>
       <a href="#kak">Как работим</a>
       <a href="#marki">Марки</a>
       <a href="#otzivi">Отзиви</a>
       <a href="#kontakt">Контакт</a>
     </div>
-    <a class="nav-cta" href="tel:+359844119101">📞 0844 119 101</a>
+    <div class="nav-ctas">
+      <a class="nav-cta" href="tel:+359844119101">📞 0844 119 101</a>
+      <a class="nav-cta whatsapp-cta" href="https://wa.me/359844119101" target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
   </nav>
 </header>
 
@@ -304,8 +368,14 @@
       <div class="hero-grid">
         <div>
           <div class="eyebrow">Продажба · Монтаж · Сервиз</div>
-          <h1>Хладилният контур е нашият занаят.<br><span>Прохладата</span> — вашата.</h1>
-          <p class="lead">Дани Клима monтира климатици в домове и офиси в София вече над 12 години — от първия оглед до пускането в експлоатация и годишната поддръжка.</p>
+          <h1>Комфорт без компромиси.<br><span>През всеки сезон.</span></h1>
+          <p class="lead">Независимо дали търсите прохлада през лятото или топлина през зимата, предлагаме климатични решения, на които можете да разчитате — доказани марки, професионален монтаж и сервиз с внимание към всеки детайл.</p>
+          <ul class="hero-checklist">
+            <li>Безплатна консултация и оглед</li>
+            <li>Бърз и качествен монтаж</li>
+            <li>Прозрачни цени</li>
+            <li>Гаранция за услугата</li>
+          </ul>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#kontakt">Заяви безплатен оглед</a>
             <a class="btn btn-ghost" href="#uslugi">Виж услугите</a>
@@ -342,7 +412,7 @@
         <div class="svc-card">
           <div class="svc-icon">❄️</div>
           <h3>Продажба</h3>
-          <p>Подбираме модел по площ, изложение и бюджет — без preprodadeni мощности.</p>
+          <p>Подбираме модел по площ, изложение и бюджет — без препродадени мощности.</p>
         </div>
         <div class="svc-card">
           <div class="svc-icon">🔧</div>
@@ -363,38 +433,179 @@
     </div>
   </section>
 
+  <section id="katalog">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Каталог с климатици</h2>
+        <p>Изберете модел според мощността и бюджета — всички цени са с включен стандартен монтаж, освен ако не е упоменато друго.</p>
+      </div>
+      <div class="catalog-grid">
+
+        <div class="product-card">
+          <a href="tel:+359844119101" aria-label="Обади се за Pioneer 9 климатик"><img class="product-photo" src="pioneer9.jpg" alt="Pioneer 9 климатик"></a>
+          <div class="product-body">
+            <div class="product-brand">Pioneer</div>
+            <h3 class="product-name">Pioneer 9</h3>
+            <p class="product-specs">Охлаждане и отопление до -20°C · Wi-Fi управление</p>
+            <div class="product-foot">
+              <div class="product-price">370 €<small>с монтаж</small></div>
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="tel:+359844119101" aria-label="Обади се за Mitsubishi Heavy Industries SRK/SRC 35 ZSP-W климатик"><img class="product-photo" src="mitsubishi-heavy-12000.jpg" alt="Mitsubishi Heavy Industries SRK/SRC 35 ZSP-W климатик"></a>
+          <div class="product-body">
+            <div class="product-brand">Mitsubishi Heavy Industries</div>
+            <h3 class="product-name">SRK/SRC 35 ZSP-W · 12000 BTU</h3>
+            <p class="product-specs">3.5 kW · Клас A++/A+ · SEER 6.2 / SCOP 4.1</p>
+            <div class="product-foot">
+              <div class="product-price">795 €<small>с монтаж</small></div>
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="tel:+359844119101" aria-label="Обади се за Mitsubishi Electric MSZ-HR35VF климатик"><img class="product-photo" src="mitsubishi-electric-hr35.jpg" alt="Mitsubishi Electric MSZ-HR35VF климатик"></a>
+          <div class="product-body">
+            <div class="product-brand">Mitsubishi Electric</div>
+            <h3 class="product-name">MSZ-HR35VF / MUZ-HR35VF-E2 · 12000 BTU</h3>
+            <p class="product-specs">Клас A++ · Безплатна доставка и монтаж · Гаранция 36 месеца</p>
+            <div class="product-foot">
+              <div class="product-price">866 €<small>с ДДС</small></div>
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="tel:+359844119101" aria-label="Обади се за LDK Pre 13000 BTU климатик"><img class="product-photo" src="ldk-pro-13000.jpg" alt="LDK Pre 13000 BTU климатик"></a>
+          <div class="product-body">
+            <div class="product-brand">LDK Pre</div>
+            <h3 class="product-name">Инверторен климатик · 13000 BTU</h3>
+            <p class="product-specs">За помещения до 37 м² · Wi-Fi · 5 години гаранция</p>
+            <div class="product-foot">
+              <div class="product-price">570 €<small>с монтаж</small></div>
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="tel:+359844119101" aria-label="Обади се за LDK Premium Gold 13000 BTU климатик"><img class="product-photo" src="1785225817522.png" alt="LDK Premium Gold 13000 BTU климатик"></a>
+          <div class="product-body">
+            <div class="product-brand">LDK Premium Gold</div>
+            <h3 class="product-name">Инверторен климатик · 13000 BTU</h3>
+            <p class="product-specs">Wi-Fi Smart Control · Self-cleaning · 5 години гаранция</p>
+            <div class="product-foot">
+              <div class="product-price">639 €<small>с монтаж</small></div>
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="tel:+359844119101" aria-label="Обади се за Midea Xtreme Save Multi-Split климатик"><img class="product-photo" src="midea-multisplit.jpg" alt="Midea Xtreme Save Multi-Split климатик"></a>
+          <div class="product-body">
+            <div class="product-brand">Midea</div>
+            <h3 class="product-name">Xtreme Save Multi-Split · 12000+9000 BTU</h3>
+            <p class="product-specs">Два вътрешни тела на едно външно · Пакетна цена</p>
+            <div class="product-foot">
+              <div class="product-price">1650 €<small>с монтаж</small></div>
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="tel:+359844119101" aria-label="Обади се за Noxa Cool климатици 9000, 12000 и 18000 BTU"><img class="product-photo" src="noxa-cool-lineup.jpg" alt="Noxa Cool климатици 9000, 12000 и 18000 BTU"></a>
+          <div class="product-body">
+            <div class="product-brand">Noxa Cool</div>
+            <h3 class="product-name">Инверторни климатици · 9000 / 12000 / 18000 BTU</h3>
+            <p class="product-specs">Клас A++ · 3 години пълна гаранция, 5 години на компресора</p>
+            <div class="product-foot">
+              <div class="product-price">от 434 €<small>9000 BTU</small></div>
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="tel:+359844119101" aria-label="Обади се за Suzuki Electric климатик"><img class="product-photo" src="1785330799242.png" alt="Suzuki Electric климатик"></a>
+          <div class="product-body">
+            <div class="product-brand">Suzuki Electric</div>
+            <h3 class="product-name">Климатик Suzuki</h3>
+            <p class="product-specs">Wi-Fi управление · Тиха работа · Отопление и охлаждане</p>
+            <div class="product-foot">
+              <div class="product-price">530 €<small>с монтаж</small></div>
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <a href="tel:+359844119101" aria-label="Обади се за Toshiba Inverter климатик"><img class="product-photo" src="toshiba-inverter.jpg" alt="Toshiba Inverter климатик"></a>
+          <div class="product-body">
+            <div class="product-brand">Toshiba</div>
+            <h3 class="product-name">Toshiba Inverter</h3>
+            <p class="product-specs">Охлаждане 1.2–3.6 kW · Отопление 0.97–4.5 kW</p>
+            <div class="product-foot">
+              <div class="product-price">790 €<small>с монтаж</small></div>
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="catalog-note">Цените и наличностите могат да варират — свържете се с нас за актуална оферта и консултация за вашето помещение.</p>
+    </div>
+  </section>
+
   <section id="kak">
     <div class="wrap">
       <div class="process">
         <div class="section-head">
           <h2>Как работим</h2>
-          <p>Четири стъпки от обаждането до първия студен въздух.</p>
+          <p>Шест стъпки от обаждането до годишната поддръжка.</p>
         </div>
         <div class="steps">
           <div class="step">
             <div class="step-num">01</div>
+            <h3>Запитване</h3>
+            <p>Обаждате се или пишете — вземаме адрес и описвате какво ви трябва.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
             <h3>Оглед</h3>
             <p>Идваме на място, измерваме и препоръчваме мощност — безплатно.</p>
           </div>
           <div class="step">
-            <div class="step-num">02</div>
+            <div class="step-num">03</div>
             <h3>Оферта</h3>
             <p>Фиксирана цена за уред и монтаж, без скрити такси за тръби.</p>
           </div>
           <div class="step">
-            <div class="step-num">03</div>
+            <div class="step-num">04</div>
             <h3>Монтаж</h3>
             <p>Обикновено за един ден — вътрешно и външно тяло, вакуум, тест.</p>
           </div>
           <div class="step">
-            <div class="step-num">04</div>
+            <div class="step-num">05</div>
             <h3>Пускане</h3>
             <p>Настройваме режимите заедно с вас и оставяме гаранционна карта.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">06</div>
+            <h3>Поддръжка</h3>
+            <p>Годишен преглед и почистване по график, който не забравяте сами.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <section id="marki">
     <div class="wrap">
@@ -451,6 +662,18 @@
           <p>„Цената в офертата съвпадна с крайната фактура. Без изненади за тръби или скоба."</p>
           <div class="who">— Мария, кв. Лозенец</div>
         </div>
+        <div class="testi">
+          <p>„Правиха ни оглед в събота вечер, защото климатикът беше спрял точно преди жегите. Дойдоха на другия ден."</p>
+          <div class="who">— Георги, кв. Дружба</div>
+        </div>
+        <div class="testi">
+          <p>„Смениха стар климатик с нов инверторен модел за по-малко от четири часа, без прах и без разхвърляно."</p>
+          <div class="who">— Десислава, кв. Изток</div>
+        </div>
+        <div class="testi">
+          <p>„Обясниха ми разликата между два модела на чист език, без да ме притискат да купя най-скъпия."</p>
+          <div class="who">— Николай, кв. Овча купел</div>
+        </div>
       </div>
     </div>
   </section>
@@ -474,21 +697,24 @@
             <dd>София и областта</dd>
           </dl>
         </div>
-        <form onsubmit="event.preventDefault(); alert('Формата е примерна — свържете я с имейл или CRM, за да получавате заявки.');">
+        <form action="https://formsubmit.co/daniklima123@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Ново запитване от сайта Дани Клима">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
           <div class="field">
             <label for="name">Име</label>
-            <input id="name" type="text" required>
+            <input id="name" name="Име" type="text" required>
           </div>
           <div class="field">
             <label for="phone">Телефон</label>
-            <input id="phone" type="tel" required>
+            <input id="phone" name="Телефон" type="tel" required>
           </div>
           <div class="field">
             <label for="msg">Съобщение</label>
-            <textarea id="msg" placeholder="Разкажете накратко за помещението и желаната мощност..."></textarea>
+            <textarea id="msg" name="Съобщение" placeholder="Разкажете накратко за помещението и желаната мощност..."></textarea>
           </div>
           <button class="btn btn-primary" type="submit" style="align-self:flex-start;">Изпрати запитване</button>
-          <p class="form-note">Формата е примерна и не изпраща реално съобщение — трябва да се свърже с имейл или CRM система.</p>
+          <p class="form-note">Първото съобщение изисква еднократно потвърждение по имейл — вижте бележката по-долу.</p>
         </form>
       </div>
     </div>
@@ -505,9 +731,10 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  // Thermostat dial: animate arc + temperature counting down from 32° to 21°
   const arc = document.getElementById('dialArc');
   const tempEl = document.getElementById('dialTemp');
-  const circumference = 578;
+  const circumference = 578; // 2 * PI * 92, rounded
   const startTemp = 32, endTemp = 21;
   const duration = 2600;
   let startTime = null;
