@@ -8,18 +8,18 @@
 <meta name="description" content="Дани Клима — продажба, монтаж и сервиз на климатици. Хладилен контур, изпълнен от техници, които го познават отвътре.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0F2438;
-    --ice:#EAF4F7;
-    --paper:#F5F9FA;
-    --cyan:#3FA7B8;
-    --cyan-dim:#C9E6EA;
-    --copper:#B5651D;
-    --copper-bright:#D9863E;
+    --navy:#0F172A;
+    --ice:#F1F5F9;
+    --paper:#F8FAFC;
+    --cyan:#0284C7;
+    --cyan-dim:#DBEAFE;
+    --copper:#F97316;
+    --copper-bright:#EA580C;
     --mint:#8FD8C4;
-    --line: rgba(15,36,56,0.12);
+    --line: #E2E8F0;
     --maxw: 1180px;
   }
 
@@ -28,13 +28,13 @@
   body{
     margin:0;
     background:var(--paper);
-    color:var(--navy);
-    font-family:'Manrope', sans-serif;
+    color:#334155;
+    font-family:'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing:antialiased;
     line-height:1.5;
     overflow-x:hidden;
   }
-  h1,h2,h3,.eyebrow,.logo{ font-family:'Unbounded', sans-serif; }
+  h1,h2,h3,.eyebrow,.logo{ font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; }
   .mono{ font-family:'JetBrains Mono', monospace; }
 
   a{color:inherit;}
@@ -52,7 +52,6 @@
     position:relative;
   }
 
-  /* ---------- Refrigerant line — the signature element ---------- */
   .pipe-svg{
     position:absolute;
     top:0; left:50%;
@@ -90,7 +89,6 @@
     *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
   }
 
-  /* ---------- Nav ---------- */
   header{
     position:sticky; top:0; z-index:50;
     background:rgba(245,249,250,0.88);
@@ -118,9 +116,49 @@
   }
   .nav-ctas{ display:flex; align-items:center; gap:10px; }
   .whatsapp-cta{ background:#25D366; color:#0F2438; }
+  .cart-btn{
+    position:relative; display:inline-flex; align-items:center; justify-content:center;
+    width:42px; height:42px; border-radius:50%; background:var(--navy); color:#fff;
+    font-size:1.1rem; border:none; cursor:pointer;
+  }
+  .cart-count{
+    position:absolute; top:-4px; right:-4px; background:var(--copper);
+    color:#fff; font-size:0.68rem; font-weight:700; min-width:18px; height:18px;
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; padding:0 3px;
+  }
   .navlinks-mobile{ display:none; }
 
-  /* ---------- Hero ---------- */
+  .menu-btn{
+    display:none; width:42px; height:42px; border-radius:50%; background:var(--navy);
+    color:#fff; border:none; font-size:1.15rem; cursor:pointer; align-items:center; justify-content:center;
+  }
+  .mobile-menu-overlay{
+    position:fixed; inset:0; background:rgba(15,23,42,0.5);
+    z-index:110; opacity:0; pointer-events:none; transition:opacity .2s ease;
+  }
+  .mobile-menu-overlay.open{ opacity:1; pointer-events:auto; }
+  .mobile-menu{
+    position:fixed; top:0; left:0; height:100%; width:min(320px, 82vw);
+    background:#fff; z-index:111; box-shadow:12px 0 32px rgba(15,23,42,0.25);
+    transform:translateX(-100%); transition:transform .25s ease;
+    display:flex; flex-direction:column; padding-bottom:20px;
+  }
+  .mobile-menu.open{ transform:translateX(0); }
+  .mobile-menu-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 22px; border-bottom:1px solid var(--line); font-weight:700; font-size:1.05rem;
+  }
+  .mobile-menu-link{
+    padding:16px 22px; text-decoration:none; color:var(--navy); font-weight:600;
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-menu-cta{ color:var(--copper); }
+
+  @media (max-width: 880px){
+    .menu-btn{ display:flex; }
+  }
+
   .hero{
     padding:88px 0 64px;
     position:relative;
@@ -167,7 +205,6 @@
   .btn-primary{ background:var(--copper); color:#fff; box-shadow:0 8px 20px -8px rgba(181,101,29,0.6); }
   .btn-ghost{ background:transparent; border-color:var(--navy); color:var(--navy); }
 
-  /* Thermostat dial */
   .dial-card{
     background:var(--navy); color:var(--ice);
     border-radius:28px; padding:36px 32px;
@@ -188,13 +225,11 @@
   .dial-temp small{ display:block; font-size:0.9rem; opacity:0.55; font-weight:400; margin-top:2px; }
   .dial-foot{ display:flex; justify-content:space-between; font-size:0.82rem; opacity:0.65; margin-top:14px; position:relative; }
 
-  /* ---------- Section shell ---------- */
   section{ padding:76px 0; position:relative; }
   .section-head{ max-width:640px; margin-bottom:44px; }
   .section-head h2{ font-size:clamp(1.6rem,3vw,2.2rem); margin:0 0 12px; letter-spacing:-0.01em; }
   .section-head p{ opacity:0.75; margin:0; font-size:1.02rem; }
 
-  /* ---------- Services ---------- */
   .services-grid{
     display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
   }
@@ -211,7 +246,6 @@
   .svc-card h3{ font-size:1.05rem; margin:0 0 8px; font-weight:600; }
   .svc-card p{ font-size:0.92rem; opacity:0.72; margin:0; }
 
-  /* ---------- Process (real sequence — numbered legitimately) ---------- */
   .process{
     background:var(--navy); color:var(--ice); border-radius:28px;
     padding:56px 40px;
@@ -233,7 +267,6 @@
   .step h3{ font-size:1rem; margin:0 0 8px; font-weight:600; }
   .step p{ font-size:0.88rem; opacity:0.68; margin:0; }
 
-  /* ---------- Brands ---------- */
   .brand-row{
     display:flex; flex-wrap:wrap; gap:14px;
   }
@@ -242,38 +275,64 @@
     font-family:'JetBrains Mono', monospace; font-size:0.9rem; background:#fff;
   }
 
-  /* ---------- Catalog ---------- */
   .catalog-grid{
     display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
   }
   .product-card{
-    background:#fff; border:1px solid var(--line); border-radius:20px;
+    background:#fff; border:1px solid var(--line); border-radius:16px;
     overflow:hidden; display:flex; flex-direction:column;
-    transition: border-color .15s ease, transform .15s ease;
+    box-shadow:0 10px 30px rgba(15,23,42,0.04);
+    transition: box-shadow .25s cubic-bezier(0.16,1,0.3,1), transform .25s cubic-bezier(0.16,1,0.3,1), border-color .25s ease;
   }
-  .product-card:hover{ border-color:var(--cyan); transform:translateY(-3px); }
+  .product-card:hover{ border-color:#CBD5E1; transform:translateY(-6px); box-shadow:0 20px 40px rgba(15,23,42,0.1); }
+  .product-media{ position:relative; }
   .product-photo{
     width:100%; aspect-ratio:1/1; object-fit:cover; object-position:top;
     display:block; background:var(--ice);
   }
+  .product-media-overlay{
+    position:absolute; left:0; right:0; bottom:0; height:45%;
+    background:linear-gradient(to top, rgba(15,23,42,0.85), transparent);
+    display:flex; align-items:flex-end; padding:14px 16px;
+    pointer-events:none;
+  }
+  .product-media-title{
+    color:#fff; font-weight:700; font-size:0.98rem;
+    text-shadow:0 2px 4px rgba(0,0,0,0.35);
+  }
   .product-body{ padding:18px 20px 22px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .product-badges{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:2px; }
+  .badge-tag{
+    background:var(--cyan-dim); color:var(--cyan); font-size:0.7rem; font-weight:700;
+    padding:3px 9px; border-radius:6px; white-space:nowrap;
+  }
   .product-brand{ font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--copper); font-weight:600; }
   .product-name{ font-size:1.02rem; font-weight:700; margin:0; line-height:1.3; }
   .product-specs{ font-size:0.85rem; opacity:0.68; margin:0; }
   .product-foot{
-    display:flex; align-items:center; justify-content:space-between;
+    display:flex; flex-direction:column; align-items:flex-start;
     margin-top:auto; padding-top:12px; gap:10px;
   }
   .product-price{ font-family:'JetBrains Mono', monospace; font-weight:500; font-size:1.15rem; color:var(--navy); }
   .product-price small{ display:block; font-size:0.7rem; font-weight:400; opacity:0.6; }
+  .product-actions{ display:flex; gap:8px; flex-wrap:wrap; width:100%; }
   .product-order{
     display:inline-flex; align-items:center; gap:6px;
-    background:var(--navy); color:#fff; padding:9px 16px; border-radius:100px;
-    font-size:0.82rem; font-weight:700; text-decoration:none; white-space:nowrap;
+    background:var(--navy); color:#fff; padding:9px 14px; border-radius:100px;
+    font-size:0.8rem; font-weight:700; text-decoration:none; white-space:nowrap;
+    border:none; cursor:pointer; font-family:'Plus Jakarta Sans', sans-serif; flex:1; justify-content:center;
   }
+  .add-cart-btn{ background:var(--copper); }
   .catalog-note{ font-size:0.85rem; opacity:0.6; margin-top:28px; }
+  .payment-box{
+    margin-top:32px; padding:24px 26px; background:#fff;
+    border:1px solid var(--line); border-radius:20px;
+  }
+  .payment-box h3{ font-size:1rem; margin:0 0 14px; font-weight:700; }
+  .payment-list{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+  .payment-list li{ font-size:0.92rem; opacity:0.85; }
+  .payment-list li strong{ color:var(--copper); font-weight:700; }
 
-  /* ---------- Stats ---------- */
   .stats{
     display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
   }
@@ -285,7 +344,6 @@
   }
   .stat .lbl{ font-size:0.9rem; opacity:0.68; margin-top:4px; }
 
-  /* ---------- Testimonials ---------- */
   .testi-grid{
     display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
   }
@@ -295,7 +353,6 @@
   .testi p{ font-size:0.96rem; margin:0 0 16px; }
   .testi .who{ font-size:0.85rem; opacity:0.6; font-weight:600; }
 
-  /* ---------- Contact ---------- */
   .contact-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;
   }
@@ -306,7 +363,7 @@
   label{ font-size:0.85rem; font-weight:600; opacity:0.75; }
   input, textarea{
     width:100%; padding:13px 16px; border-radius:12px; border:1px solid var(--line);
-    background:#fff; font-family:'Manrope', sans-serif; font-size:0.96rem; color:var(--navy);
+    background:#fff; font-family:'Plus Jakarta Sans', sans-serif; font-size:0.96rem; color:var(--navy);
   }
   input:focus, textarea:focus{ border-color:var(--cyan); }
   textarea{ resize:vertical; min-height:100px; }
@@ -335,6 +392,72 @@
   @media (max-width: 560px){
     .catalog-grid{ grid-template-columns:1fr; }
   }
+
+  .cart-overlay{
+    position:fixed; inset:0; background:rgba(15,36,56,0.5);
+    z-index:100; opacity:0; pointer-events:none; transition:opacity .2s ease;
+  }
+  .cart-overlay.open{ opacity:1; pointer-events:auto; }
+  .cart-drawer{
+    position:fixed; top:0; right:0; height:100%; width:min(400px, 92vw);
+    background:var(--paper); z-index:101; box-shadow:-12px 0 32px rgba(15,36,56,0.25);
+    transform:translateX(100%); transition:transform .25s ease;
+    display:flex; flex-direction:column;
+  }
+  .cart-drawer.open{ transform:translateX(0); }
+  .cart-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 22px; border-bottom:1px solid var(--line);
+  }
+  .cart-head h3{ margin:0; font-size:1.1rem; }
+  .cart-close{ background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--navy); line-height:1; }
+  .cart-items{ flex:1; overflow-y:auto; padding:16px 22px; display:flex; flex-direction:column; gap:14px; }
+  .cart-empty{ opacity:0.6; font-size:0.92rem; text-align:center; margin-top:40px; }
+  .cart-item{
+    display:flex; justify-content:space-between; align-items:center;
+    gap:10px; padding-bottom:14px; border-bottom:1px solid var(--line);
+  }
+  .cart-item-name{ font-size:0.9rem; font-weight:600; }
+  .cart-item-price{ font-size:0.82rem; opacity:0.65; font-family:'JetBrains Mono', monospace; }
+  .cart-item-qty{ display:flex; align-items:center; gap:8px; }
+  .qty-btn{
+    width:26px; height:26px; border-radius:50%; border:1px solid var(--line);
+    background:#fff; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .cart-item-remove{ background:none; border:none; color:var(--copper); font-size:0.8rem; cursor:pointer; text-decoration:underline; }
+  .cart-foot{ padding:20px 22px; border-top:1px solid var(--line); }
+  .cart-total{
+    display:flex; justify-content:space-between; font-weight:700; font-size:1.05rem;
+    margin-bottom:14px; font-family:'JetBrains Mono', monospace;
+  }
+  .cart-checkout{
+    display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+    background:#25D366; color:#0F2438; border:none; border-radius:100px;
+    padding:14px; font-weight:700; font-size:0.96rem; cursor:pointer;
+  }
+  .cart-checkout:disabled{ opacity:0.4; cursor:not-allowed; }
+  .cart-note{ font-size:0.78rem; opacity:0.55; margin-top:10px; text-align:center; }
+
+  .floating-actions{
+    position:fixed; bottom:24px; right:20px; z-index:90;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .float-btn{
+    width:54px; height:54px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 20px rgba(15,36,56,0.28);
+    transition:transform .2s ease;
+  }
+  .float-btn:hover{ transform:translateY(-3px) scale(1.05); }
+  .float-btn svg{ width:24px; height:24px; fill:#fff; }
+  .call-float{ background:var(--navy); }
+  .whatsapp-float{ background:#25D366; }
+
+  @media (max-width: 560px){
+    .floating-actions{ bottom:16px; right:14px; }
+    .float-btn{ width:48px; height:48px; }
+    .float-btn svg{ width:21px; height:21px; }
+  }
 </style>
 </head>
 <body>
@@ -358,9 +481,56 @@
     <div class="nav-ctas">
       <a class="nav-cta" href="tel:+359844119101">📞 0844 119 101</a>
       <a class="nav-cta whatsapp-cta" href="https://wa.me/359844119101" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <button class="cart-btn" type="button" id="cartOpenBtn" aria-label="Отвори количка">
+        🛒<span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="menu-btn" type="button" id="menuOpenBtn" aria-label="Отвори меню">☰</button>
     </div>
   </nav>
 </header>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-label="Меню">
+  <div class="mobile-menu-head">
+    <span>Меню</span>
+    <button class="cart-close" id="menuCloseBtn" aria-label="Затвори менюто">&times;</button>
+  </div>
+  <a href="#uslugi" class="mobile-menu-link">Услуги</a>
+  <a href="#katalog" class="mobile-menu-link">Каталог</a>
+  <a href="#kak" class="mobile-menu-link">Как работим</a>
+  <a href="#marki" class="mobile-menu-link">Марки</a>
+  <a href="#otzivi" class="mobile-menu-link">Отзиви</a>
+  <a href="#kontakt" class="mobile-menu-link">Контакт</a>
+  <a href="tel:+359844119101" class="mobile-menu-link mobile-menu-cta">📞 0844 119 101</a>
+</aside>
+
+<div class="floating-actions">
+  <a href="tel:+359844119101" class="float-btn call-float" aria-label="Обади се">
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+  </a>
+  <a href="https://wa.me/359844119101" target="_blank" rel="noopener" class="float-btn whatsapp-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Количка">
+  <div class="cart-head">
+    <h3>Количка</h3>
+    <button class="cart-close" id="cartCloseBtn" aria-label="Затвори количката">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Количката е празна.</p>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total">
+      <span>Общо</span>
+      <span id="cartTotal">0 €</span>
+    </div>
+    <button class="cart-checkout" id="cartCheckoutBtn" disabled>💬 Поръчай през WhatsApp</button>
+    <p class="cart-note">Поръчката се изпраща като съобщение — потвърждаваме детайли и начин на плащане лично.</p>
+  </div>
+</aside>
 
 <main>
   <section class="hero">
@@ -442,124 +612,168 @@
       <div class="catalog-grid">
 
         <div class="product-card">
-          <a href="tel:+359844119101" aria-label="Обади се за Pioneer 9 климатик"><img class="product-photo" src="pioneer9.jpg" alt="Pioneer 9 климатик"></a>
+          <div class="product-media"><img class="product-photo" src="pioneer9.jpg" alt="Pioneer 9 климатик"><div class="product-media-overlay"><span class="product-media-title">Pioneer 9</span></div></div>
           <div class="product-body">
             <div class="product-brand">Pioneer</div>
+            <div class="product-badges"><span class="badge-tag">Wi-Fi</span><span class="badge-tag">До −20°C</span></div>
             <h3 class="product-name">Pioneer 9</h3>
             <p class="product-specs">Охлаждане и отопление до -20°C · Wi-Fi управление</p>
             <div class="product-foot">
               <div class="product-price">370 €<small>с монтаж</small></div>
+              <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="Pioneer 9" data-price="370">🛒 Купи сега</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="product-card">
-          <a href="tel:+359844119101" aria-label="Обади се за Mitsubishi Heavy Industries SRK/SRC 35 ZSP-W климатик"><img class="product-photo" src="mitsubishi-heavy-12000.jpg" alt="Mitsubishi Heavy Industries SRK/SRC 35 ZSP-W климатик"></a>
+          <div class="product-media"><img class="product-photo" src="mitsubishi-heavy-12000.jpg" alt="Mitsubishi Heavy Industries SRK/SRC 35 ZSP-W климатик"><div class="product-media-overlay"><span class="product-media-title">SRK/SRC 35 ZSP-W · 12000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Mitsubishi Heavy Industries</div>
+            <div class="product-badges"><span class="badge-tag">Клас A++/A+</span></div>
             <h3 class="product-name">SRK/SRC 35 ZSP-W · 12000 BTU</h3>
             <p class="product-specs">3.5 kW · Клас A++/A+ · SEER 6.2 / SCOP 4.1</p>
             <div class="product-foot">
               <div class="product-price">795 €<small>с монтаж</small></div>
+              <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="SRK/SRC 35 ZSP-W · 12000 BTU" data-price="795">🛒 Купи сега</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="product-card">
-          <a href="tel:+359844119101" aria-label="Обади се за Mitsubishi Electric MSZ-HR35VF климатик"><img class="product-photo" src="mitsubishi-electric-hr35.jpg" alt="Mitsubishi Electric MSZ-HR35VF климатик"></a>
+          <div class="product-media"><img class="product-photo" src="mitsubishi-electric-hr35.jpg" alt="Mitsubishi Electric MSZ-HR35VF климатик"><div class="product-media-overlay"><span class="product-media-title">MSZ-HR35VF / MUZ-HR35VF-E2 · 12000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Mitsubishi Electric</div>
+            <div class="product-badges"><span class="badge-tag">Клас A++</span><span class="badge-tag">Гаранция 36 мес.</span></div>
             <h3 class="product-name">MSZ-HR35VF / MUZ-HR35VF-E2 · 12000 BTU</h3>
             <p class="product-specs">Клас A++ · Безплатна доставка и монтаж · Гаранция 36 месеца</p>
             <div class="product-foot">
               <div class="product-price">866 €<small>с ДДС</small></div>
+              <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="MSZ-HR35VF / MUZ-HR35VF-E2 · 12000 BTU" data-price="866">🛒 Купи сега</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="product-card">
-          <a href="tel:+359844119101" aria-label="Обади се за LDK Pre 13000 BTU климатик"><img class="product-photo" src="ldk-pro-13000.jpg" alt="LDK Pre 13000 BTU климатик"></a>
+          <div class="product-media"><img class="product-photo" src="ldk-pro-13000.jpg" alt="LDK Pre 13000 BTU климатик"><div class="product-media-overlay"><span class="product-media-title">Инверторен климатик · 13000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">LDK Pre</div>
+            <div class="product-badges"><span class="badge-tag">Wi-Fi</span><span class="badge-tag">5 год. гаранция</span></div>
             <h3 class="product-name">Инверторен климатик · 13000 BTU</h3>
             <p class="product-specs">За помещения до 37 м² · Wi-Fi · 5 години гаранция</p>
             <div class="product-foot">
               <div class="product-price">570 €<small>с монтаж</small></div>
+              <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="Инверторен климатик · 13000 BTU" data-price="570">🛒 Купи сега</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="product-card">
-          <a href="tel:+359844119101" aria-label="Обади се за LDK Premium Gold 13000 BTU климатик"><img class="product-photo" src="1785225817522.png" alt="LDK Premium Gold 13000 BTU климатик"></a>
+          <div class="product-media"><img class="product-photo" src="1785225817522.png" alt="LDK Premium Gold 13000 BTU климатик"><div class="product-media-overlay"><span class="product-media-title">Инверторен климатик · 13000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">LDK Premium Gold</div>
+            <div class="product-badges"><span class="badge-tag">Wi-Fi</span><span class="badge-tag">5 год. гаранция</span></div>
             <h3 class="product-name">Инверторен климатик · 13000 BTU</h3>
             <p class="product-specs">Wi-Fi Smart Control · Self-cleaning · 5 години гаранция</p>
             <div class="product-foot">
               <div class="product-price">639 €<small>с монтаж</small></div>
+              <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="Инверторен климатик · 13000 BTU" data-price="639">🛒 Купи сега</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="product-card">
-          <a href="tel:+359844119101" aria-label="Обади се за Midea Xtreme Save Multi-Split климатик"><img class="product-photo" src="midea-multisplit.jpg" alt="Midea Xtreme Save Multi-Split климатик"></a>
+          <div class="product-media"><img class="product-photo" src="midea-multisplit.jpg" alt="Midea Xtreme Save Multi-Split климатик"><div class="product-media-overlay"><span class="product-media-title">Xtreme Save Multi-Split · 12000+9000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Midea</div>
+            <div class="product-badges"><span class="badge-tag">Пакетна цена</span></div>
             <h3 class="product-name">Xtreme Save Multi-Split · 12000+9000 BTU</h3>
             <p class="product-specs">Два вътрешни тела на едно външно · Пакетна цена</p>
             <div class="product-foot">
               <div class="product-price">1650 €<small>с монтаж</small></div>
+              <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="Xtreme Save Multi-Split · 12000+9000 BTU" data-price="1650">🛒 Купи сега</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="product-card">
-          <a href="tel:+359844119101" aria-label="Обади се за Noxa Cool климатици 9000, 12000 и 18000 BTU"><img class="product-photo" src="noxa-cool-lineup.jpg" alt="Noxa Cool климатици 9000, 12000 и 18000 BTU"></a>
+          <div class="product-media"><img class="product-photo" src="noxa-cool-lineup.jpg" alt="Noxa Cool климатици 9000, 12000 и 18000 BTU"><div class="product-media-overlay"><span class="product-media-title">Инверторни климатици · 9000 / 12000 / 18000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Noxa Cool</div>
+            <div class="product-badges"><span class="badge-tag">Клас A++</span><span class="badge-tag">5 год. гаранция</span></div>
             <h3 class="product-name">Инверторни климатици · 9000 / 12000 / 18000 BTU</h3>
             <p class="product-specs">Клас A++ · 3 години пълна гаранция, 5 години на компресора</p>
             <div class="product-foot">
               <div class="product-price">от 434 €<small>9000 BTU</small></div>
+              <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="Noxa Cool 9000 BTU" data-price="434">🛒 Купи сега</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="product-card">
-          <a href="tel:+359844119101" aria-label="Обади се за Suzuki Electric климатик"><img class="product-photo" src="1785330799242.png" alt="Suzuki Electric климатик"></a>
+          <div class="product-media"><img class="product-photo" src="1785330799242.png" alt="Suzuki Electric климатик"><div class="product-media-overlay"><span class="product-media-title">Климатик Suzuki</span></div></div>
           <div class="product-body">
             <div class="product-brand">Suzuki Electric</div>
+            <div class="product-badges"><span class="badge-tag">Wi-Fi</span><span class="badge-tag">Тиха работа</span></div>
             <h3 class="product-name">Климатик Suzuki</h3>
             <p class="product-specs">Wi-Fi управление · Тиха работа · Отопление и охлаждане</p>
             <div class="product-foot">
               <div class="product-price">530 €<small>с монтаж</small></div>
+              <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="Климатик Suzuki" data-price="530">🛒 Купи сега</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="product-card">
-          <a href="tel:+359844119101" aria-label="Обади се за Toshiba Inverter климатик"><img class="product-photo" src="toshiba-inverter.jpg" alt="Toshiba Inverter климатик"></a>
+          <div class="product-media"><img class="product-photo" src="toshiba-inverter.jpg" alt="Toshiba Inverter климатик"><div class="product-media-overlay"><span class="product-media-title">Toshiba Inverter</span></div></div>
           <div class="product-body">
             <div class="product-brand">Toshiba</div>
+            <div class="product-badges"><span class="badge-tag">Включен монтаж</span></div>
             <h3 class="product-name">Toshiba Inverter</h3>
             <p class="product-specs">Охлаждане 1.2–3.6 kW · Отопление 0.97–4.5 kW</p>
             <div class="product-foot">
               <div class="product-price">790 €<small>с монтаж</small></div>
+              <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="Toshiba Inverter" data-price="790">🛒 Купи сега</button>
+              </div>
             </div>
           </div>
         </div>
 
       </div>
       <p class="catalog-note">Цените и наличностите могат да варират — свържете се с нас за актуална оферта и консултация за вашето помещение.</p>
+      <div class="payment-box">
+        <h3>Начини на плащане</h3>
+        <ul class="payment-list">
+          <li><strong>В брой</strong> — при монтажа или доставката.</li>
+          <li><strong>Банков превод</strong> — по фактура, преди или след монтажа.</li>
+          <li><strong>Наложен платеж</strong> — при доставка чрез Еконт/Спиди, плащате на куриера.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -731,10 +945,9 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Thermostat dial: animate arc + temperature counting down from 32° to 21°
   const arc = document.getElementById('dialArc');
   const tempEl = document.getElementById('dialTemp');
-  const circumference = 578; // 2 * PI * 92, rounded
+  const circumference = 578;
   const startTemp = 32, endTemp = 21;
   const duration = 2600;
   let startTime = null;
@@ -762,6 +975,113 @@
   } else {
     requestAnimationFrame(step);
   }
+
+  let cart = [];
+
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const cartCountEl = document.getElementById('cartCount');
+  const cartDrawer = document.getElementById('cartDrawer');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
+
+  function openCart(){
+    cartDrawer.classList.add('open');
+    cartOverlay.classList.add('open');
+  }
+  function closeCart(){
+    cartDrawer.classList.remove('open');
+    cartOverlay.classList.remove('open');
+  }
+
+  document.getElementById('cartOpenBtn').addEventListener('click', openCart);
+  document.getElementById('cartCloseBtn').addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+
+  function renderCart(){
+    const totalCount = cart.reduce((sum, i) => sum + i.qty, 0);
+    cartCountEl.textContent = totalCount;
+
+    if(cart.length === 0){
+      cartItemsEl.innerHTML = '<p class="cart-empty">Количката е празна.</p>';
+      cartTotalEl.textContent = '0 €';
+      cartCheckoutBtn.disabled = true;
+      return;
+    }
+
+    cartItemsEl.innerHTML = cart.map((item, idx) => `
+      <div class="cart-item">
+        <div>
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">${item.price} € × ${item.qty}</div>
+        </div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" data-action="dec" data-idx="${idx}" type="button">−</button>
+          <span>${item.qty}</span>
+          <button class="qty-btn" data-action="inc" data-idx="${idx}" type="button">+</button>
+          <button class="cart-item-remove" data-action="remove" data-idx="${idx}" type="button">Премахни</button>
+        </div>
+      </div>
+    `).join('');
+
+    const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+    cartTotalEl.textContent = total.toFixed(0) + ' €';
+    cartCheckoutBtn.disabled = false;
+  }
+
+  document.querySelectorAll('.add-cart-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.name;
+      const price = parseFloat(btn.dataset.price);
+      const existing = cart.find(i => i.name === name);
+      if(existing){
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      renderCart();
+      openCart();
+    });
+  });
+
+  cartItemsEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-action]');
+    if(!btn) return;
+    const idx = parseInt(btn.dataset.idx, 10);
+    const action = btn.dataset.action;
+    if(action === 'inc'){ cart[idx].qty += 1; }
+    if(action === 'dec'){ cart[idx].qty -= 1; if(cart[idx].qty <= 0){ cart.splice(idx, 1); } }
+    if(action === 'remove'){ cart.splice(idx, 1); }
+    renderCart();
+  });
+
+  cartCheckoutBtn.addEventListener('click', () => {
+    if(cart.length === 0) return;
+    const lines = cart.map(i => `• ${i.name} × ${i.qty} — ${(i.price * i.qty).toFixed(0)} €`);
+    const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+    const message = 'Здравейте, искам да поръчам:\n' + lines.join('\n') + `\n\nОбщо: ${total.toFixed(0)} €`;
+    const url = 'https://wa.me/359844119101?text=' + encodeURIComponent(message);
+    window.open(url, '_blank');
+  });
+
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+  function openMenu(){
+    mobileMenu.classList.add('open');
+    mobileMenuOverlay.classList.add('open');
+  }
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    mobileMenuOverlay.classList.remove('open');
+  }
+
+  document.getElementById('menuOpenBtn').addEventListener('click', openMenu);
+  document.getElementById('menuCloseBtn').addEventListener('click', closeMenu);
+  mobileMenuOverlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-menu-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
 </script>
 
 </body>
