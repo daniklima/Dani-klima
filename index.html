@@ -1,3 +1,6 @@
+Ето пълния код — избери всичко в блока, копирай и постави в GitHub (Edit → Select All → Paste → Commit):
+
+```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -24,7 +27,7 @@
   }
 
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:hidden;}
   body{
     margin:0;
     background:var(--paper);
@@ -32,7 +35,6 @@
     font-family:'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing:antialiased;
     line-height:1.5;
-    overflow-x:hidden;
   }
   h1,h2,h3,.eyebrow,.logo{ font-family:'Plus Jakarta Sans', sans-serif; font-weight:800; }
   .mono{ font-family:'JetBrains Mono', monospace; }
@@ -142,21 +144,39 @@
     position:fixed; top:0; left:0; height:100%; width:min(320px, 82vw);
     background:#fff; z-index:111; box-shadow:12px 0 32px rgba(15,23,42,0.25);
     transform:translateX(-100%); transition:transform .25s ease;
-    display:flex; flex-direction:column; padding-bottom:20px;
+    display:flex; flex-direction:column;
   }
   .mobile-menu.open{ transform:translateX(0); }
   .mobile-menu-head{
     display:flex; align-items:center; justify-content:space-between;
-    padding:20px 22px; border-bottom:1px solid var(--line); font-weight:700; font-size:1.05rem;
+    padding:20px 22px; background:var(--navy); color:#fff;
+    font-weight:800; font-size:1.05rem;
   }
+  .mobile-menu-head .cart-close{ color:#fff; opacity:0.8; }
+  .mobile-menu-links{ flex:1; overflow-y:auto; padding:8px 0; }
   .mobile-menu-link{
-    padding:16px 22px; text-decoration:none; color:var(--navy); font-weight:600;
-    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; gap:12px;
+    padding:14px 22px; text-decoration:none; color:var(--navy); font-weight:600; font-size:0.96rem;
+    border-left:3px solid transparent; transition:background .15s ease, border-color .15s ease;
   }
-  .mobile-menu-cta{ color:var(--copper); }
+  .mobile-menu-link .mm-icon{ font-size:1rem; width:22px; text-align:center; flex-shrink:0; }
+  .mobile-menu-link:hover, .mobile-menu-link:active{ background:var(--paper); border-left-color:var(--copper); }
+  .mobile-menu-foot{
+    padding:16px 18px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:10px;
+  }
+  .mobile-menu-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    padding:13px; border-radius:100px; font-weight:700; font-size:0.9rem;
+    text-decoration:none; width:100%;
+  }
+  .mobile-menu-btn.call{ background:var(--navy); color:#fff; }
+  .mobile-menu-btn.wa{ background:#25D366; color:#0F2438; }
 
   @media (max-width: 880px){
     .menu-btn{ display:flex; }
+    .nav-cta{ display:none; }
+    .nav-ctas{ gap:12px; }
+    .menu-btn{ background:#fff; color:var(--navy); border:1.5px solid var(--navy); font-size:1.3rem; }
   }
 
   .hero{
@@ -300,11 +320,16 @@
     color:#fff; font-weight:700; font-size:0.98rem;
     text-shadow:0 2px 4px rgba(0,0,0,0.35);
   }
+  .product-media-placeholder{
+    width:100%; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--navy), #1E3A5F);
+  }
+  .product-media-placeholder svg{ width:34%; height:34%; opacity:0.4; fill:none; stroke:#fff; stroke-width:1.4; }
   .product-body{ padding:18px 20px 22px; display:flex; flex-direction:column; gap:8px; flex:1; }
   .product-badges{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:2px; }
   .badge-tag{
-    background:var(--cyan-dim); color:var(--cyan); font-size:0.7rem; font-weight:700;
-    padding:3px 9px; border-radius:6px; white-space:nowrap;
+    background:var(--navy); color:#fff; font-size:0.68rem; font-weight:700;
+    padding:4px 10px; border-radius:6px; white-space:nowrap; letter-spacing:0.01em;
   }
   .product-brand{ font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--copper); font-weight:600; }
   .product-name{ font-size:1.02rem; font-weight:700; margin:0; line-height:1.3; }
@@ -324,6 +349,29 @@
   }
   .add-cart-btn{ background:var(--copper); }
   .catalog-note{ font-size:0.85rem; opacity:0.6; margin-top:28px; }
+
+  .usp-strip{
+    background:#fff; border-bottom:1px solid var(--line); border-top:1px solid var(--line);
+  }
+  .usp-row{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:0;
+    padding:18px 0;
+  }
+  .usp-item{
+    display:flex; align-items:center; gap:10px; padding:0 16px;
+    border-right:1px solid var(--line);
+  }
+  .usp-item:last-child{ border-right:none; }
+  .usp-icon{ font-size:1.3rem; flex-shrink:0; }
+  .usp-text b{ display:block; font-size:0.82rem; font-weight:700; color:var(--navy); }
+  .usp-text span{ display:block; font-size:0.72rem; opacity:0.6; }
+  @media (max-width: 980px){
+    .usp-row{ grid-template-columns:repeat(2,1fr); gap:14px; }
+    .usp-item{ border-right:none; }
+  }
+  @media (max-width: 560px){
+    .usp-row{ grid-template-columns:1fr; }
+  }
   .payment-box{
     margin-top:32px; padding:24px 26px; background:#fff;
     border:1px solid var(--line); border-radius:20px;
@@ -489,19 +537,34 @@
   </nav>
 </header>
 
+<div class="usp-strip">
+  <div class="wrap usp-row">
+    <div class="usp-item"><span class="usp-icon">📞</span><div class="usp-text"><b>Безплатен оглед</b><span>Консултация без ангажимент</span></div></div>
+    <div class="usp-item"><span class="usp-icon">🔧</span><div class="usp-text"><b>Монтаж за 1 ден</b><span>Опитен собствен екип</span></div></div>
+    <div class="usp-item"><span class="usp-icon">🛡️</span><div class="usp-text"><b>Гаранция</b><span>На уред и монтаж</span></div></div>
+    <div class="usp-item"><span class="usp-icon">💳</span><div class="usp-text"><b>Гъвкаво плащане</b><span>Брой · превод · наложен платеж</span></div></div>
+    <div class="usp-item"><span class="usp-icon">📍</span><div class="usp-text"><b>София и областта</b><span>Бърз отговор при спешен случай</span></div></div>
+  </div>
+</div>
+
 <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 <aside class="mobile-menu" id="mobileMenu" aria-label="Меню">
   <div class="mobile-menu-head">
-    <span>Меню</span>
+    <span><span class="dot" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--cyan);margin-right:8px;"></span>Дани Клима</span>
     <button class="cart-close" id="menuCloseBtn" aria-label="Затвори менюто">&times;</button>
   </div>
-  <a href="#uslugi" class="mobile-menu-link">Услуги</a>
-  <a href="#katalog" class="mobile-menu-link">Каталог</a>
-  <a href="#kak" class="mobile-menu-link">Как работим</a>
-  <a href="#marki" class="mobile-menu-link">Марки</a>
-  <a href="#otzivi" class="mobile-menu-link">Отзиви</a>
-  <a href="#kontakt" class="mobile-menu-link">Контакт</a>
-  <a href="tel:+359844119101" class="mobile-menu-link mobile-menu-cta">📞 0844 119 101</a>
+  <div class="mobile-menu-links">
+    <a href="#uslugi" class="mobile-menu-link"><span class="mm-icon">❄️</span>Услуги</a>
+    <a href="#katalog" class="mobile-menu-link"><span class="mm-icon">🛒</span>Каталог</a>
+    <a href="#kak" class="mobile-menu-link"><span class="mm-icon">📋</span>Как работим</a>
+    <a href="#marki" class="mobile-menu-link"><span class="mm-icon">🏷️</span>Марки</a>
+    <a href="#otzivi" class="mobile-menu-link"><span class="mm-icon">⭐</span>Отзиви</a>
+    <a href="#kontakt" class="mobile-menu-link"><span class="mm-icon">✉️</span>Контакт</a>
+  </div>
+  <div class="mobile-menu-foot">
+    <a href="tel:+359844119101" class="mobile-menu-btn call">📞 0844 119 101</a>
+    <a href="https://wa.me/359844119101" target="_blank" rel="noopener" class="mobile-menu-btn wa">💬 WhatsApp</a>
+  </div>
 </aside>
 
 <div class="floating-actions">
@@ -759,6 +822,57 @@
               <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
               <button class="product-order add-cart-btn" type="button" data-name="Toshiba Inverter" data-price="790">🛒 Купи сега</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-media-placeholder"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M4.5 4.5l15 15M19.5 4.5l-15 15"/></svg></div>
+          <div class="product-body">
+            <div class="product-brand">TCL</div>
+            <div class="product-badges"><span class="badge-tag">Инверторен</span></div>
+            <h3 class="product-name">TCL · 12000 BTU</h3>
+            <p class="product-specs">Охлаждане и отопление · 12000 BTU</p>
+            <div class="product-foot">
+              <div class="product-price">500 €<small>с монтаж</small></div>
+              <div class="product-actions">
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="TCL · 12000 BTU" data-price="500">🛒 Купи сега</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-media-placeholder"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M4.5 4.5l15 15M19.5 4.5l-15 15"/></svg></div>
+          <div class="product-body">
+            <div class="product-brand">Daikin</div>
+            <div class="product-badges"><span class="badge-tag">Sensira</span></div>
+            <h3 class="product-name">Daikin Sensira · 9000 BTU</h3>
+            <p class="product-specs">Охлаждане и отопление · 9000 BTU · доказана надеждност</p>
+            <div class="product-foot">
+              <div class="product-price">797 €<small>с монтаж</small></div>
+              <div class="product-actions">
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="Daikin Sensira · 9000 BTU" data-price="797">🛒 Купи сега</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-media-placeholder"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M4.5 4.5l15 15M19.5 4.5l-15 15"/></svg></div>
+          <div class="product-body">
+            <div class="product-brand">Sang</div>
+            <div class="product-badges"><span class="badge-tag">Бюджетен</span></div>
+            <h3 class="product-name">Sang 12 · 12000 BTU</h3>
+            <p class="product-specs">Охлаждане и отопление · 12000 BTU</p>
+            <div class="product-foot">
+              <div class="product-price">390 €<small>с монтаж</small></div>
+              <div class="product-actions">
+              <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
+              <button class="product-order add-cart-btn" type="button" data-name="Sang 12 · 12000 BTU" data-price="390">🛒 Купи сега</button>
               </div>
             </div>
           </div>
@@ -1086,3 +1200,4 @@
 
 </body>
 </html>
+```
