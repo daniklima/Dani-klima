@@ -1,6 +1,3 @@
-Ето пълния код — избери всичко в блока, копирай и постави в GitHub (Edit → Select All → Paste → Commit):
-
-```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -222,6 +219,7 @@
     transition:transform .15s ease, box-shadow .15s ease;
   }
   .btn:hover{ transform:translateY(-2px); }
+  .btn:active{ transform:scale(0.97); }
   .btn-primary{ background:var(--copper); color:#fff; box-shadow:0 8px 20px -8px rgba(181,101,29,0.6); }
   .btn-ghost{ background:transparent; border-color:var(--navy); color:var(--navy); }
 
@@ -246,6 +244,7 @@
   .dial-foot{ display:flex; justify-content:space-between; font-size:0.82rem; opacity:0.65; margin-top:14px; position:relative; }
 
   section{ padding:76px 0; position:relative; }
+  section.tint{ background:var(--ice); }
   .section-head{ max-width:640px; margin-bottom:44px; }
   .section-head h2{ font-size:clamp(1.6rem,3vw,2.2rem); margin:0 0 12px; letter-spacing:-0.01em; }
   .section-head p{ opacity:0.75; margin:0; font-size:1.02rem; }
@@ -256,9 +255,10 @@
   .svc-card{
     background:#fff; border:1px solid var(--line); border-radius:20px;
     padding:26px 22px; position:relative;
-    transition: border-color .15s ease, transform .15s ease;
+    box-shadow:0 8px 22px rgba(15,23,42,0.045);
+    transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
   }
-  .svc-card:hover{ border-color:var(--cyan); transform:translateY(-3px); }
+  .svc-card:hover{ border-color:var(--cyan); transform:translateY(-3px); box-shadow:0 14px 30px rgba(15,23,42,0.08); }
   .svc-icon{
     width:44px; height:44px; border-radius:12px; background:var(--ice);
     display:flex; align-items:center; justify-content:center; margin-bottom:18px;
@@ -306,9 +306,28 @@
   }
   .product-card:hover{ border-color:#CBD5E1; transform:translateY(-6px); box-shadow:0 20px 40px rgba(15,23,42,0.1); }
   .product-media{ position:relative; }
+  .product-live-icon{
+    position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%;
+    background:rgba(255,255,255,0.18); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center; font-size:1.15rem;
+    opacity:0; transform:scale(0.5) rotate(-25deg);
+    transition:opacity .25s ease, transform .25s ease;
+    pointer-events:none; z-index:2;
+  }
+  .product-card:hover .product-live-icon{
+    opacity:1; transform:scale(1) rotate(0deg);
+    animation: spin-slow 4s linear infinite;
+  }
+  @keyframes spin-slow{ to{ transform:rotate(360deg); } }
   .product-photo{
     width:100%; aspect-ratio:1/1; object-fit:cover; object-position:top;
     display:block; background:var(--ice);
+    filter:saturate(0.9) contrast(1.05);
+  }
+  .product-media::before{
+    content:''; position:absolute; left:0; right:0; top:0; height:35%;
+    background:linear-gradient(to bottom, rgba(15,23,42,0.28), transparent);
+    pointer-events:none; z-index:1;
   }
   .product-media-overlay{
     position:absolute; left:0; right:0; bottom:0; height:45%;
@@ -321,6 +340,7 @@
     text-shadow:0 2px 4px rgba(0,0,0,0.35);
   }
   .product-media-placeholder{
+    position:relative;
     width:100%; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
     background:linear-gradient(135deg, var(--navy), #1E3A5F);
   }
@@ -339,15 +359,21 @@
     margin-top:auto; padding-top:12px; gap:10px;
   }
   .product-price{ font-family:'JetBrains Mono', monospace; font-weight:500; font-size:1.15rem; color:var(--navy); }
-  .product-price small{ display:block; font-size:0.7rem; font-weight:400; opacity:0.6; }
+  .product-price small{ display:block; font-size:0.7rem; font-weight:600; color:#DC2626; opacity:1; }
   .product-actions{ display:flex; gap:8px; flex-wrap:wrap; width:100%; }
   .product-order{
     display:inline-flex; align-items:center; gap:6px;
     background:var(--navy); color:#fff; padding:9px 14px; border-radius:100px;
     font-size:0.8rem; font-weight:700; text-decoration:none; white-space:nowrap;
-    border:none; cursor:pointer; font-family:'Plus Jakarta Sans', sans-serif; flex:1; justify-content:center;
+    border:none; cursor:pointer; font-family:'Plus Jakarta Sans', sans-serif; flex:0.85; justify-content:center;
+    transition: transform .12s ease, box-shadow .12s ease;
   }
-  .add-cart-btn{ background:var(--copper); }
+  .add-cart-btn{
+    background:var(--copper); flex:1.2; padding:11px 14px; font-size:0.84rem;
+    box-shadow:0 6px 16px -4px rgba(181,101,29,0.55);
+  }
+  .product-order:active{ transform:scale(0.96); }
+  .product-card:active{ transform:translateY(-2px); }
   .catalog-note{ font-size:0.85rem; opacity:0.6; margin-top:28px; }
 
   .usp-strip{
@@ -375,6 +401,7 @@
   .payment-box{
     margin-top:32px; padding:24px 26px; background:#fff;
     border:1px solid var(--line); border-radius:20px;
+    box-shadow:0 8px 22px rgba(15,23,42,0.045);
   }
   .payment-box h3{ font-size:1rem; margin:0 0 14px; font-weight:700; }
   .payment-list{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
@@ -397,6 +424,7 @@
   }
   .testi{
     background:#fff; border:1px solid var(--line); border-radius:20px; padding:26px;
+    box-shadow:0 8px 22px rgba(15,23,42,0.045);
   }
   .testi p{ font-size:0.96rem; margin:0 0 16px; }
   .testi .who{ font-size:0.85rem; opacity:0.6; font-weight:600; }
@@ -666,7 +694,7 @@
     </div>
   </section>
 
-  <section id="katalog">
+  <section id="katalog" class="tint">
     <div class="wrap">
       <div class="section-head">
         <h2>Каталог с климатици</h2>
@@ -675,7 +703,7 @@
       <div class="catalog-grid">
 
         <div class="product-card">
-          <div class="product-media"><img class="product-photo" src="pioneer9.jpg" alt="Pioneer 9 климатик"><div class="product-media-overlay"><span class="product-media-title">Pioneer 9</span></div></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="pioneer9.jpg" alt="Pioneer 9 климатик"><div class="product-media-overlay"><span class="product-media-title">Pioneer 9</span></div></div>
           <div class="product-body">
             <div class="product-brand">Pioneer</div>
             <div class="product-badges"><span class="badge-tag">Wi-Fi</span><span class="badge-tag">До −20°C</span></div>
@@ -692,7 +720,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media"><img class="product-photo" src="mitsubishi-heavy-12000.jpg" alt="Mitsubishi Heavy Industries SRK/SRC 35 ZSP-W климатик"><div class="product-media-overlay"><span class="product-media-title">SRK/SRC 35 ZSP-W · 12000 BTU</span></div></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="mitsubishi-heavy-12000.jpg" alt="Mitsubishi Heavy Industries SRK/SRC 35 ZSP-W климатик"><div class="product-media-overlay"><span class="product-media-title">SRK/SRC 35 ZSP-W · 12000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Mitsubishi Heavy Industries</div>
             <div class="product-badges"><span class="badge-tag">Клас A++/A+</span></div>
@@ -709,14 +737,14 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media"><img class="product-photo" src="mitsubishi-electric-hr35.jpg" alt="Mitsubishi Electric MSZ-HR35VF климатик"><div class="product-media-overlay"><span class="product-media-title">MSZ-HR35VF / MUZ-HR35VF-E2 · 12000 BTU</span></div></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="mitsubishi-electric-hr35.jpg" alt="Mitsubishi Electric MSZ-HR35VF климатик"><div class="product-media-overlay"><span class="product-media-title">MSZ-HR35VF / MUZ-HR35VF-E2 · 12000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Mitsubishi Electric</div>
             <div class="product-badges"><span class="badge-tag">Клас A++</span><span class="badge-tag">Гаранция 36 мес.</span></div>
             <h3 class="product-name">MSZ-HR35VF / MUZ-HR35VF-E2 · 12000 BTU</h3>
             <p class="product-specs">Клас A++ · Безплатна доставка и монтаж · Гаранция 36 месеца</p>
             <div class="product-foot">
-              <div class="product-price">866 €<small>с ДДС</small></div>
+              <div class="product-price">866 €<small>с монтаж</small></div>
               <div class="product-actions">
               <a class="product-order" href="tel:+359844119101">📞 Обади се</a>
               <button class="product-order add-cart-btn" type="button" data-name="MSZ-HR35VF / MUZ-HR35VF-E2 · 12000 BTU" data-price="866">🛒 Купи сега</button>
@@ -726,7 +754,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media"><img class="product-photo" src="ldk-pro-13000.jpg" alt="LDK Pre 13000 BTU климатик"><div class="product-media-overlay"><span class="product-media-title">Инверторен климатик · 13000 BTU</span></div></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="ldk-pro-13000.jpg" alt="LDK Pre 13000 BTU климатик"><div class="product-media-overlay"><span class="product-media-title">Инверторен климатик · 13000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">LDK Pre</div>
             <div class="product-badges"><span class="badge-tag">Wi-Fi</span><span class="badge-tag">5 год. гаранция</span></div>
@@ -743,7 +771,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media"><img class="product-photo" src="1785225817522.png" alt="LDK Premium Gold 13000 BTU климатик"><div class="product-media-overlay"><span class="product-media-title">Инверторен климатик · 13000 BTU</span></div></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="1785330799242.png" alt="LDK Premium Gold 13000 BTU климатик"><div class="product-media-overlay"><span class="product-media-title">Инверторен климатик · 13000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">LDK Premium Gold</div>
             <div class="product-badges"><span class="badge-tag">Wi-Fi</span><span class="badge-tag">5 год. гаранция</span></div>
@@ -760,7 +788,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media"><img class="product-photo" src="midea-multisplit.jpg" alt="Midea Xtreme Save Multi-Split климатик"><div class="product-media-overlay"><span class="product-media-title">Xtreme Save Multi-Split · 12000+9000 BTU</span></div></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="midea-multisplit.jpg" alt="Midea Xtreme Save Multi-Split климатик"><div class="product-media-overlay"><span class="product-media-title">Xtreme Save Multi-Split · 12000+9000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Midea</div>
             <div class="product-badges"><span class="badge-tag">Пакетна цена</span></div>
@@ -777,7 +805,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media"><img class="product-photo" src="noxa-cool-lineup.jpg" alt="Noxa Cool климатици 9000, 12000 и 18000 BTU"><div class="product-media-overlay"><span class="product-media-title">Инверторни климатици · 9000 / 12000 / 18000 BTU</span></div></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="noxa-cool-lineup.jpg" alt="Noxa Cool климатици 9000, 12000 и 18000 BTU"><div class="product-media-overlay"><span class="product-media-title">Инверторни климатици · 9000 / 12000 / 18000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Noxa Cool</div>
             <div class="product-badges"><span class="badge-tag">Клас A++</span><span class="badge-tag">5 год. гаранция</span></div>
@@ -794,7 +822,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media"><img class="product-photo" src="1785330799242.png" alt="Suzuki Electric климатик"><div class="product-media-overlay"><span class="product-media-title">Климатик Suzuki</span></div></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="1785225817522.png" alt="Suzuki Electric климатик"><div class="product-media-overlay"><span class="product-media-title">Климатик Suzuki</span></div></div>
           <div class="product-body">
             <div class="product-brand">Suzuki Electric</div>
             <div class="product-badges"><span class="badge-tag">Wi-Fi</span><span class="badge-tag">Тиха работа</span></div>
@@ -811,7 +839,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media"><img class="product-photo" src="toshiba-inverter.jpg" alt="Toshiba Inverter климатик"><div class="product-media-overlay"><span class="product-media-title">Toshiba Inverter</span></div></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="toshiba-inverter.jpg" alt="Toshiba Inverter климатик"><div class="product-media-overlay"><span class="product-media-title">Toshiba Inverter</span></div></div>
           <div class="product-body">
             <div class="product-brand">Toshiba</div>
             <div class="product-badges"><span class="badge-tag">Включен монтаж</span></div>
@@ -828,7 +856,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media-placeholder"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M4.5 4.5l15 15M19.5 4.5l-15 15"/></svg></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="tcl-flyer.png" alt="TCL 12000 BTU климатик"><div class="product-media-overlay"><span class="product-media-title">TCL · 12000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">TCL</div>
             <div class="product-badges"><span class="badge-tag">Инверторен</span></div>
@@ -845,7 +873,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media-placeholder"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M4.5 4.5l15 15M19.5 4.5l-15 15"/></svg></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="daikin-sensira.png" alt="Daikin Sensira 9000 BTU климатик"><div class="product-media-overlay"><span class="product-media-title">Daikin Sensira · 9000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Daikin</div>
             <div class="product-badges"><span class="badge-tag">Sensira</span></div>
@@ -862,7 +890,7 @@
         </div>
 
         <div class="product-card">
-          <div class="product-media-placeholder"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M4.5 4.5l15 15M19.5 4.5l-15 15"/></svg></div>
+          <div class="product-media"><div class="product-live-icon">❄️</div><img class="product-photo" src="sang12-flyer.png" alt="Sang 12 12000 BTU климатик"><div class="product-media-overlay"><span class="product-media-title">Sang 12 · 12000 BTU</span></div></div>
           <div class="product-body">
             <div class="product-brand">Sang</div>
             <div class="product-badges"><span class="badge-tag">Бюджетен</span></div>
@@ -971,7 +999,7 @@
     </div>
   </section>
 
-  <section id="otzivi">
+  <section id="otzivi" class="tint">
     <div class="wrap">
       <div class="section-head">
         <h2>Какво казват клиентите</h2>
@@ -1199,5 +1227,4 @@
 </script>
 
 </body>
-</html>
-```
+</html>    
